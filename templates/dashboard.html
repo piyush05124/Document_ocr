@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url("{{ img_path }}");
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        table {
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <img src="{{iconpath}}" alt="">
+            Welcome, {{ user }}
+        </h1>
+        <h2>Your Data</h2>
+        
+        <!-- Table to display user data -->
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    {% for column in content.columns %}
+                        <th>{{ column }}</th> <!-- Dynamically create column headers -->
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for index, row in content.iterrows() %}
+                <tr>
+                    <td>{{ index + 1 }}</td>
+                    {% for value in row %}
+                        <td>{{ value }}</td> <!-- Dynamically create table cells -->
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+            <a href="/logout" class="btn btn-dark">Logout</a>
+            <a href="/home_user" class="btn btn-dark">Home</a>
+            <a href="/PDF" class="btn btn-dark">PDF</a>
+            <a href="/getimagefiles" class="btn btn-dark">Image-To-Text</a>
+            <a href="/qr" class="btn btn-dark">QR Code</a>
+        </table>
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

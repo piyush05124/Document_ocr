@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Text Extraction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("{{img_path }}");/*url('https://images.unsplash.com/photo-1518770660439-4636190af475');*/
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* .container {
+            text-align: center;
+            backdrop-filter: blur(5px);
+            max-width: 600px;
+        } */
+
+        .container {
+            background: rgba(243, 237, 237, 0.233);
+            border-radius: 12px;
+            padding: 5em;
+            text-align: center;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .header h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .container label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            display: block;
+            margin-top: 1em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .container input[type="file"]{
+            font-size: 18px;
+            padding: 0.5em;
+            margin-top: 1em;
+            width: 60%;
+        }
+        .container input[type="text"] {
+            font-size: 18px;
+            padding: 0.5em;
+            margin-top: 1em;
+            width: 80%;
+        }
+
+        .submit-button {
+            background-color: #FF69B4;
+            color: white;
+            padding: 0.8em 2em;
+            border: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-top: 1.5em;
+        }
+
+        .submit-button:hover {
+            background-color: #C37299;
+            transform: translateY(-3px);
+        }
+
+        .output-text {
+            width: 80%;
+            padding: 1.5em;
+            font-size: 1em;
+            margin-top: 2em;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            resize: none;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content:space-around;
+            margin-top: 1.5em;
+        }
+
+        .nav-button {
+            background-color: #007acc;
+            color: white;
+            padding: 0.8em 1em;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #005b99;
+            transform: translateY(-4px);
+        }
+
+        /* .checkbox{
+            width: 100%;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 1.5em;
+        } */
+
+        .checkbox-container {
+            display: flex;
+            
+            /* vertical-align: bottom; Vertically center the checkbox and label */
+
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-left: 6em; /* Space between checkbox and label */
+            width:3em;
+            height: 20px;
+            /* vertical-align: top; */
+            /* align-items: center; */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Convert PDF to Text</h1>
+    </div>
+
+
+    <form action="/pdf" method = 'POST' enctype="multipart/form-data">
+        <div class="box">
+            <label for="pdf">Select PDF File:</label>
+            <input type="file" id="pdf" name="pdf" accept=".pdf" required>
+        </div>
+        <div class="box">
+            <label for="pgno">Enter Page Number:</label>
+            <input type="text" id="pgno" name="pgno" placeholder="Optional page number" required>
+        </div>
+        
+        <button type="submit" class="submit-button" >Extract Text</button>
+        
+        <textarea id="extractedText" class="output-text" rows="8" cols="40" placeholder="Extracted text will appear here" readonly>{{ptext}}</textarea>
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="pdf_store" name="pdf_store">
+                Select to store the extracted data
+            </label>
+        </div>
+    </form>
+
+
+    <div class="nav-buttons">
+        <form action="/home" method="POST">
+            <button class="nav-button">Home</button>
+        </form>
+        <form action="/getimagefiles" method="POST">
+            <button class="nav-button">Image to Text</button>
+        </form>
+        <form action="/qr" method="POST">
+            <button class="nav-button">QR Code Reader</button>
+        </form>
+        <form>
+        </form>
+    </div>
+    <br>
+</div>
+
+
+</body>
+</html>

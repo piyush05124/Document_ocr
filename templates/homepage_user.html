@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Text Extraction Tools</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("{{ img_path }}"); /* Example abstract background */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .top-div-container {
+            position: absolute; /* Position the div absolutely */
+            top: 20px; /* Distance from the top */
+            right:45px; /* Distance from the left */
+            border-radius: 12px;
+            padding: 10px; /* Optional padding */
+            display: flex;
+            gap: 1rem; /* Space between buttons */
+            z-index: 10; /* Ensure it appears above other content */
+        }
+
+
+
+
+        .container {
+            background: rgba(243, 237, 237, 0.49);
+            border-radius: 12px;
+            padding: 3em;
+            text-align: center;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            color: #007acc;
+            margin-bottom: 2em;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: bold;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4); /* Adding shadow around the header */
+        }
+
+        .header h4 {
+            font-size: 1.2em;
+            color: #2c3032;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .button {
+            padding: 1em;
+            font-size: 1.2em;
+            background-color: #007acc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #005b99;
+            transform: translateY(-4px);
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="top-div-container" >
+        <form action="/login_dashboard" method="POST">
+            <button type="submit" class="button">{{login_name}}</button>
+        </form>
+        <form action="/register" method="GET">
+            <button type="submit" class="button">Register</button>
+        </form>
+    </div>
+<div class="container">
+    <div class="header">
+        <h1>Welcome to the Text Extraction Hub</h1>
+        <h4>Select a tool to begin</h4>
+    </div>
+    
+    <div class="button-container">
+        <form action="/PDF" method="POST">
+            <button class="button">PDF to Text</button>
+        </form>
+        
+        <form action="/getimagefiles" method="POST">
+            <button class="button">Image to Text</button>
+        </form>
+        <form action="/qr" method="POST">
+            <button class="button">QR Code Reader</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

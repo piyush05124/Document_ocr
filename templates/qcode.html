@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Reader</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("{{ img_path }}");  /*url('https://images.unsplash.com/photo-1518770660439-4636190af475');*/
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 10em;
+            backdrop-filter: blur(5px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .container label {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .container input[type="file"] {
+            padding: 0.5em;
+            margin-top: 1em;
+        }
+
+        .submit-button {
+            background-color: #FF69B4;
+            color: white;
+            padding: 0.8em 2em;
+            border: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            margin-top: 1em;
+        }
+
+        .submit-button:hover {
+            background-color: #C37299;
+            transform: translateY(-3px);
+        }
+
+        .output-text {
+            width: 80%;
+            padding: 1em;
+            font-size: 1em;
+            margin-top: 1.5em;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        .label-output-text {
+            width: 20%;
+            padding: 30em; /* Adjust padding */
+            font-size: 1em;
+            margin-top: 1em; /* Space between button and label */
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            background-color: #dddddd98;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.2em;
+            margin-top: 8em;
+        }
+
+        .nav-button {
+            background-color: #007acc;
+            color: white;
+            padding: 0.8em 1.5em;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-button:hover {
+            background-color: #005b99;
+            transform: translateY(-4px);
+        }
+
+        @media only screen and (max-width: 768px){  
+        .header h1 {
+            font-size: 2em;
+        }
+        
+        .submit-button {
+            padding: 0.6em 1.6em;
+            font-size: 1em;
+            top: 15%;
+        }
+
+        .container label 
+        {
+            font-size: 1.5em;
+        }
+
+        .container input[type="file"] {
+            font-size: 1em;
+            margin-top: 1em;
+            width: 70%;
+        }
+        
+        .nav-button {
+            background-color: #007acc;
+            color: white;
+            padding: 0.8em 0.4em;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .checkbox-container {
+            display: flex;
+            
+            /* vertical-align: bottom; Vertically center the checkbox and label */
+
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-left: 6em; /* Space between checkbox and label */
+            width:3em;
+            height: 20px;
+            /* vertical-align: top; */
+            /* align-items: center; */
+        }
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>QR Code Reader</h1>
+    </div>
+
+    <form action="/down" method="POST" enctype="multipart/form-data">
+        <label for="img">Select QR Code Image:</label>
+        <input type="file" id="img" name="img" accept="image/*" required>
+        
+        <button type="submit" class="submit-button" >Decode</button>
+        <textarea class="output-text" rows="2" cols="70"> {{qtext}} </textarea readonly>
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="pdf_store" name="pdf_store">
+                Select to store the extracted data
+            </label>
+        </div>
+    </form>
+
+    
+    <div class="nav-buttons">
+        <form action="/home" method="POST">
+            <button class="nav-button">Home</button>
+        </form>
+        <form action="/getimagefiles" method="POST">
+            <button class="nav-button">Image to Text</button>
+        </form>
+        <form action="/PDF" method="POST">
+            <button class="nav-button">PDF to Text</button>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>
